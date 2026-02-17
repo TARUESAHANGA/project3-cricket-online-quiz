@@ -1,4 +1,5 @@
 const quizQuestions = {
+    // school boy cricket quiz questions
     easy: [
         {
             question: "How many players are there in a cricket team?",
@@ -51,6 +52,8 @@ const quizQuestions = {
             correct: 1
         }
     ],
+
+    // club cricket quiz questions
     medium: [
         {
             question: "Who holds the record for the highest individual score in Test cricket?",
@@ -103,6 +106,8 @@ const quizQuestions = {
             correct: 1
         }
     ],
+
+    // international cricket quiz questions
     hard: [
         {
             question: "Who scored the fastest century in ODI cricket (in terms of balls faced)?",

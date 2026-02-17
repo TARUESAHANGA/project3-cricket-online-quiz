@@ -23,7 +23,7 @@
     --border-radius-lg: 15px;
     --border-radius-xl: 20px;
     
-    --transition-speed: 0.3s;
+    --transition-speed: 0.5s;
     
     --max-width: 1200px;
     --spacing-sm: 0.5rem;
@@ -158,7 +158,7 @@ main {
         gap: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height var(--transition-speed) ease;
+        transition: max-height var(--transition-speed) ease-in-out;
     }
 
     .nav-menu.active {

@@ -1,6 +1,39 @@
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-dark: #333;
+    --text-light: #555;
+    --text-lighter: #666;
+    --white: #ffffff;
+    --bg-light: #f8f9fa;
+    --border-color: #e0e0e0;
+    --border-light: #f0f0f0;
+    --success-color: #51cf66;
+    --error-color: #ff6b6b;
+    --secondary-btn: #6c757d;
+    
+    --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    
+    --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+    
+    --border-radius-sm: 5px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 15px;
+    --border-radius-xl: 20px;
+    
+    --transition-speed: 0.5s;
+    
+    --max-width: 1200px;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+}
+
 .quiz-container {
     max-width: 800px;
-    margin: var(--spacing-lg) auto;
+    margin: var(--spacing-md) auto;
     background: var(--white);
     border-radius: var(--border-radius-xl);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
@@ -11,27 +44,28 @@
     background: var(--gradient-primary);
     color: var(--white);
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: 1rem 1.25rem;
 }
 
 .cricket-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
+    font-size: 1.7rem;
+    margin-bottom: 0.35rem;
 }
 
 .quiz-header h1 {
-    font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
+    font-size: 1.3rem;
+    margin-bottom: 0.25rem;
 }
 
 .quiz-header p {
     opacity: 0.9;
+    font-size: 0.9rem;
 }
 
 .start-screen,
 .quiz-screen,
 .result-screen {
-    padding: var(--spacing-lg);
+    padding: 1.5rem;
 }
 
 .quiz-screen,
@@ -39,21 +73,27 @@
     display: none;
 }
 
+.quiz-screen {
+    padding: 1rem 1.15rem 1.15rem;
+}
+
 .start-screen h2 {
     color: var(--primary-color);
     margin-bottom: var(--spacing-md);
     text-align: center;
+    font-size: 1.5rem;
 }
 
 .start-screen > p {
     text-align: center;
     color: var(--text-lighter);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .difficulty-select {
-    margin: var(--spacing-lg) 0;
+    margin: var(--spacing-md) 0;
 }
 
 .difficulty-select label {
@@ -72,7 +112,7 @@
 }
 
 .difficulty-btn {
-    padding: var(--spacing-md) 1.5rem;
+    padding: 0.8rem 1.2rem;
     border: 2px solid var(--primary-color);
     background: var(--white);
     color: var(--primary-color);
@@ -80,6 +120,7 @@
     cursor: pointer;
     font-weight: 600;
     transition: all var(--transition-speed);
+    font-size: 0.9rem;
 }
 
 .difficulty-btn:hover {
@@ -96,12 +137,12 @@
 .btn {
     display: block;
     width: 100%;
-    padding: var(--spacing-md);
+    padding: 0.75rem;
     background: var(--gradient-primary);
     color: var(--white);
     border: none;
     border-radius: var(--border-radius-md);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: transform var(--transition-speed), box-shadow var(--transition-speed);
@@ -126,11 +167,11 @@
 }
 
 .progress-bar {
-    height: 8px;
+    height: 6px;
     background: var(--border-color);
     border-radius: var(--border-radius-md);
     overflow: hidden;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.8rem;
 }
 
 .progress-fill {
@@ -144,28 +185,29 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.85rem;
     font-weight: 600;
     color: var(--text-light);
+    font-size: 0.92rem;
 }
 
 .timer {
     background: var(--error-color);
     color: var(--white);
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 0.3rem 0.7rem;
     border-radius: var(--border-radius-xl);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 .lifelines {
     display: flex;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    gap: 0.5rem;
+    margin-bottom: 0.95rem;
     justify-content: center;
 }
 
 .lifeline {
-    padding: 0.8rem 1.5rem;
+    padding: 0.45rem 0.85rem;
     background: var(--white);
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
@@ -173,6 +215,7 @@
     cursor: pointer;
     font-weight: 600;
     transition: all var(--transition-speed);
+    font-size: 0.88rem;
 }
 
 .lifeline:hover:not(:disabled) {
@@ -187,28 +230,28 @@
 }
 
 .question {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-dark);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.6;
+    margin-bottom: 0.9rem;
+    line-height: 1.35;
     text-align: center;
 }
 
 .options {
     display: grid;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    gap: 0.6rem;
+    margin-bottom: 0.95rem;
 }
 
 .option {
-    padding: 1.2rem;
+    padding: 0.75rem 0.9rem;
     background: var(--bg-light);
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-md);
     cursor: pointer;
     transition: all var(--transition-speed);
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 
 .option:hover:not(.disabled) {
@@ -242,7 +285,7 @@
 
 .controls {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 0.75rem;
 }
 
 .controls .btn {
@@ -351,17 +394,17 @@
     }
 
     .quiz-header {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .quiz-header h1 {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     .start-screen,
     .quiz-screen,
     .result-screen {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     .difficulty-buttons {
@@ -373,7 +416,7 @@
     }
 
     .question {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
     }
 
     .lifelines {
@@ -382,8 +425,8 @@
 
     .lifeline {
         flex: 1 1 calc(50% - 0.5rem);
-        padding: 0.6rem var(--spacing-md);
-        font-size: 0.9rem;
+        padding: 0.55rem var(--spacing-md);
+        font-size: 0.88rem;
     }
 
     .stats {
