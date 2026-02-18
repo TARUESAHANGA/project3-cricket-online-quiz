@@ -168,12 +168,27 @@ let score = 0;
 let timeLeft = 30;
 let timerInterval;
 let selectedAnswer = null;
+let isCheckingAnswer = false;
 let usedLifelines = {
     fiftyFifty: false,
     extraTime: false,
     skipQuestion: false
 };
 let questionsAnswered = [];
+
+function shuffleQuizQuestions(questionList) {
+    for (let i = questionList.length - 1; i > 0; i--) {
+        const randomPosition = Math.floor(Math.random() * (i + 1));
+        [questionList[i], questionList[randomPosition]] = [questionList[randomPosition], questionList[i]];
+    }
+}
+
+function shuffleAllQuizTopics() {
+    Object.values(quizQuestions).forEach(topic => shuffleQuizQuestions(topic));
+}
+
+// Randomize question order on each full page load.
+shuffleAllQuizTopics()
 
 function startQuiz() {
     const startScreen = document.getElementById('startScreen');
@@ -195,6 +210,7 @@ function startQuiz() {
 }
 
 function loadQuestion() {
+    // Render the current question and reset per-question state.
     const questions = quizQuestions[currentDifficulty];
     const question = questions[currentQuestionIndex];
     
@@ -217,19 +233,26 @@ function loadQuestion() {
     progressFill.style.width = ((currentQuestionIndex + 1) / questions.length * 100) + '%';
     
     selectedAnswer = null;
+    isCheckingAnswer = false;
     document.getElementById('nextBtn').disabled = true;
     
     startTimer();
 }
 
 function selectAnswer(index) {
+    // Prevent re-selection while answer feedback is being shown.
+    if (isCheckingAnswer) return;
+
     const options = document.querySelectorAll('.option');
     
     options.forEach(opt => opt.classList.remove('selected'));
     options[index].classList.add('selected');
     
     selectedAnswer = index;
-    document.getElementById('nextBtn').disabled = false;
+    // Auto-submit immediately after an option is selected.
+    document.getElementById('nextBtn').disabled = true;
+    clearInterval(timerInterval);
+    checkAnswer();
 }
 
 function startTimer() {
@@ -254,6 +277,10 @@ function nextQuestion() {
 }
 
 function checkAnswer() {
+    // Lock processing to avoid duplicate scoring from rapid clicks/timer overlap.
+    if (isCheckingAnswer) return;
+    isCheckingAnswer = true;
+
     const questions = quizQuestions[currentDifficulty];
     const question = questions[currentQuestionIndex];
     const options = document.querySelectorAll('.option');
@@ -283,6 +310,7 @@ function checkAnswer() {
         isCorrect: isCorrect
     });
     
+    // Briefly show correct/wrong states before moving forward.
     setTimeout(() => {
         currentQuestionIndex++;
         
@@ -295,6 +323,8 @@ function checkAnswer() {
 }
 
 function useFiftyFifty() {
+    // Lifelines are disabled while an answer is being processed.
+    if (isCheckingAnswer) return;
     if (usedLifelines.fiftyFifty) return;
     
     const questions = quizQuestions[currentDifficulty];
@@ -315,6 +345,7 @@ function useFiftyFifty() {
 }
 
 function useExtraTime() {
+    if (isCheckingAnswer) return;
     if (usedLifelines.extraTime) return;
     
     timeLeft += 15;
@@ -325,10 +356,12 @@ function useExtraTime() {
 }
 
 function useSkipQuestion() {
+    if (isCheckingAnswer) return;
     if (usedLifelines.skipQuestion) return;
     
     clearInterval(timerInterval);
     
+    // Record skipped question in the review summary.
     questionsAnswered.push({
         question: quizQuestions[currentDifficulty][currentQuestionIndex].question,
         userAnswer: 'Skipped',
@@ -349,6 +382,7 @@ function useSkipQuestion() {
 }
 
 function showResults() {
+    // Display final quiz score, stats, and answer review.
     clearInterval(timerInterval);
     
     const quizScreen = document.getElementById('quizScreen');
@@ -381,6 +415,11 @@ function showResults() {
         resultIcon = '🎉';
         resultMessage = 'Great job!';
     }
+
+    if (score === 0) {
+        resultIcon = '🦆';
+        resultMessage = 'Golden duck';
+    }
     
     document.getElementById('resultIcon').textContent = resultIcon;
     document.getElementById('resultMessage').textContent = resultMessage;
@@ -388,6 +427,7 @@ function showResults() {
     const reviewContainer = document.getElementById('reviewContainer');
     reviewContainer.innerHTML = '';
     
+    // Build per-question review cards for the results screen.
     questionsAnswered.forEach((qa, index) => {
         const reviewItem = document.createElement('div');
         reviewItem.className = 'review-item ' + (qa.isCorrect ? 'correct' : 'wrong');
