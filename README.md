@@ -80,6 +80,3 @@ Cricket online quiz/
 - Safari (latest)
 - Edge (latest)
 
-## License
-
-This project is open source and available for educational purposes.

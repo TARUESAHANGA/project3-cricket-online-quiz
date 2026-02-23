@@ -310,7 +310,7 @@ function checkAnswer() {
         isCorrect: isCorrect
     });
     
-    // Briefly show correct/wrong states before moving forward.
+    // Briefly show correct/wrong answers before moving forward.
     setTimeout(() => {
         currentQuestionIndex++;
         
