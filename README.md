@@ -66,6 +66,7 @@ Cricket online quiz/
 3. Click "Play Quiz" to start
 4. Select your difficulty level
 5. Start the quiz and answer questions
+6. Live Demo [Cricket online quiz](https://taruesahanga.github.io/project3-cricket-online-quiz/)
 
 ## Quiz Questions
 
@@ -73,10 +74,15 @@ Cricket online quiz/
 - **Medium**: 10 questions about cricket history, records, and notable players
 - **Hard**: 10 questions about advanced statistics, records, and cricket trivia
 
-## Browser Support
 
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
+## Validation
 
+## Quiz Modules
+
+- `assets/js/quiz.js` - module entry point
+- `assets/js/quiz/index.js` - bootstrap and global handlers for inline button callbacks
+- `assets/js/quiz/controller.js` - quiz flow, scoring, lifelines, and transitions
+- `assets/js/quiz/questions.js` - question bank and shuffle helpers
+- `assets/js/quiz/state.js` - state shape and quiz constants
+- `assets/js/quiz/timer.js` - timer start/stop and extra-time updates
+- `assets/js/quiz/ui.js` - DOM rendering and view helpers
